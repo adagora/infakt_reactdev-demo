@@ -1,5 +1,6 @@
 export type AccountantType = {
   cell: string; // numer telefonu
+  gender: string;
   name: {
     first: string;
     last: string;
@@ -15,5 +16,7 @@ export type AccountantResponseType = {
   results: AccountantType[];
   info: {
     page: number;
+    results: number;
+    seed: string;
   };
 };

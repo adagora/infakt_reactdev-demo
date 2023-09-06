@@ -8,11 +8,11 @@ export const ContentPage = styled.div`
   box-sizing: border-box;
   align-items: flex-start;
   align-content: flex-start;
-  justify-content: space-around;
   position: relative;
   max-width: 185rem;
   border-radius: 0.6rem;
   margin: 0 auto;
+  max-width: 1330px;
   min-height: 54rem;
   min-width: 54rem;
   font-size: 1.4rem;
@@ -20,6 +20,8 @@ export const ContentPage = styled.div`
 
   > *:last-child {
     margin-top: auto;
+    flex-basis: 100%;
+    width: 100%;
   }
 
   @media ${MEDIA.mobile} {

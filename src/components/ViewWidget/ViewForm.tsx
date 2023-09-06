@@ -9,6 +9,7 @@ import {
 
 export const ViewForm: React.FC<AccountantType> = ({
   cell,
+  gender,
   name,
   email,
   picture,
@@ -19,7 +20,7 @@ export const ViewForm: React.FC<AccountantType> = ({
       <CardHeader>
         {picture && <CardImg src={picture.medium} alt="person" />}
         <CardTitle>
-          <h2>Twoja księgowa</h2>
+          <h2>{gender === "female" ? "Twoja księgowa" : "Twój księgowy"}</h2>
           <h1>{`${name.first} ${name.last}`}</h1>
         </CardTitle>
       </CardHeader>
