@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { ContentPage } from "../components/Layout/PageWrapper.styled";
 import { ViewForm } from "../components/ViewWidget/ViewForm";
 import { usePaginatedListAccounts } from "../services/AccountsService";
@@ -6,28 +5,15 @@ import { useNavigate } from "react-router-dom";
 
 const Home: React.FC = (): JSX.Element => {
   const navigate = useNavigate();
-  const [moreResults, setMoreResults] = useState<{
-    page: number;
-    results: number;
-  }>({
-    page: 1,
-    results: 4,
-  });
+  const moreResults = 4;
 
-  const { data, isLoading, isError } = usePaginatedListAccounts({
-    page: moreResults.page,
-    results: moreResults.results,
-  });
+  const { data, isLoading, isError, fetchNextPage, hasNextPage, isFetching } =
+    usePaginatedListAccounts({
+      results: moreResults,
+    });
 
   if (isError) return <h1>Something went wrong</h1>;
 
-  const handleClick = () => {
-    setMoreResults((prevState) => ({
-      ...prevState,
-      page: prevState.page + 1,
-      results: prevState.results + 4,
-    }));
-  };
   const handleClickRedirect = () => {
     navigate("/ksiegowi");
   };
@@ -38,16 +24,24 @@ const Home: React.FC = (): JSX.Element => {
         {isLoading ? (
           <h1>Loading...</h1>
         ) : (
-          data.results.map((item) => (
-            <ViewForm {...item} onClick={handleClickRedirect} />
-          ))
+          data.pages &&
+          data.pages.map((page) =>
+            page.results.map((item) => (
+              <ViewForm
+                key={item.login.uuid}
+                {...item}
+                onClick={handleClickRedirect}
+              />
+            ))
+          )
         )}
-        {data && data.results.length === 0 && <h1>No results found</h1>}
-        {isLoading ? null : (
-          <button onClick={handleClick} disabled={isLoading}>
-            Load more
+        {data && data.pages.length === 0 && <h1>No results found</h1>}
+
+        {hasNextPage ? (
+          <button onClick={() => fetchNextPage()} disabled={isLoading}>
+            {isFetching ? "Loading" : "Show more"}
           </button>
-        )}
+        ) : null}
       </>
     </ContentPage>
   );
