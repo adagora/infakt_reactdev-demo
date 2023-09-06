@@ -7,13 +7,14 @@ import {
   CardWrapper,
 } from "./ViewForm.styled";
 
-export const ViewForm: React.FC<AccountantType> = ({
+export const ViewForm: React.FC<AccountantType & { onClick: () => void }> = ({
   cell,
   gender,
   name,
   email,
   picture,
   login,
+  onClick,
 }): JSX.Element => {
   return (
     <CardWrapper id={String(login.uuid)}>
@@ -39,7 +40,7 @@ export const ViewForm: React.FC<AccountantType> = ({
       <span>350,00 PLN</span>
 
       <CardFooter>
-        <button>Dowiedz się więcej</button>
+        <button onClick={onClick}>Dowiedz się więcej</button>
       </CardFooter>
     </CardWrapper>
   );

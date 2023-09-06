@@ -2,8 +2,10 @@ import { useState } from "react";
 import { ContentPage } from "../components/Layout/PageWrapper.styled";
 import { ViewForm } from "../components/ViewWidget/ViewForm";
 import { usePaginatedListAccounts } from "../services/AccountsService";
+import { useNavigate } from "react-router-dom";
 
 const Home: React.FC = (): JSX.Element => {
+  const navigate = useNavigate();
   const [moreResults, setMoreResults] = useState<{
     page: number;
     results: number;
@@ -26,6 +28,9 @@ const Home: React.FC = (): JSX.Element => {
       results: prevState.results + 4,
     }));
   };
+  const handleClickRedirect = () => {
+    navigate("/ksiegowi");
+  };
 
   return (
     <ContentPage>
@@ -33,7 +38,9 @@ const Home: React.FC = (): JSX.Element => {
         {isLoading ? (
           <h1>Loading...</h1>
         ) : (
-          data.results.map((item) => <ViewForm {...item} />)
+          data.results.map((item) => (
+            <ViewForm {...item} onClick={handleClickRedirect} />
+          ))
         )}
         {data && data.results.length === 0 && <h1>No results found</h1>}
         {isLoading ? null : (
