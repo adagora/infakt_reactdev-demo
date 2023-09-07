@@ -1,3 +1,22 @@
+# Przykładowe rozwiązanie poniższego zadania:
+
+Cel: stworzenie widoku z kartami księgowych z możliwością doładowania kolejnych kart po wciśnięciu przycisku.
+
+### Użyte technologie
+
+1. react
+2. typescript
+3. axios
+4. react query
+5. styled components
+
+### Jak uruchomić
+
+```shell
+npm install
+npm start
+```
+
 ## Zadanie testowe na pozycję React Developer
 
 Cel: stworzenie widoku z kartami księgowych z możliwością doładowania kolejnych kart po wciśnięciu przycisku.

@@ -7,6 +7,12 @@ import {
   CardWrapper,
 } from "./ViewForm.styled";
 
+/**
+ * karta księgowego.
+ *
+ * @param {AccountantType} - Dane księgowego.
+ * @param {onClick} - Funkcja obsługująca przekierowanie do strony księgowego.
+ */
 export const ViewForm: React.FC<AccountantType & { onClick: () => void }> = ({
   cell,
   gender,
