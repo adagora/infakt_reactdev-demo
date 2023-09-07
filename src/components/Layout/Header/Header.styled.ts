@@ -24,8 +24,4 @@ export const HeaderWrapper = styled.header`
   @media ${MEDIA.tablet} {
     padding: 5rem 5rem 3rem 5rem;
   }
-
-  @media ${MEDIA.desktop} {
-    padding: 5rem 57rem 3rem 57rem;
-  }
 `;
