@@ -2,7 +2,7 @@ export const MEDIA = {
   tinyScreen: "300px",
   smallScreen: "600px",
   mediumScreen: "900px",
-  largeScreen: "1200px",
+  largeScreen: "1600px",
   get tinyDown(): string {
     return `only screen and (max-width: ${this.tinyScreen})`;
   },
