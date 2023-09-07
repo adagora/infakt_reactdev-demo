@@ -2,10 +2,9 @@ import { useInfiniteQuery } from "@tanstack/react-query";
 import { AccountantResponseType } from "../components/ViewWidget/@types/AccountantResponseType";
 import IResponseError from "./@types/IResponseError";
 import axios, { AxiosRequestConfig } from "axios";
+import { API_BASE_URL, hourInMilliseconds } from "../const";
 
 export type PageResponseType = Pick<AccountantResponseType["info"], "results">;
-
-const API_BASE_URL = "https://randomuser.me/api";
 
 /*
  * example link:  https://randomuser.me/api/?seed=abc&gender=female&page=1&results=5
@@ -31,6 +30,8 @@ export function usePaginatedListAccounts({ results }: PageResponseType) {
         // Increment the page number for the next request
         return allPages.length + 1;
       },
+      staleTime: hourInMilliseconds, // use cache, instead of fetching
+      cacheTime: hourInMilliseconds, // keep in cache, even if not used
     }
   );
 }
