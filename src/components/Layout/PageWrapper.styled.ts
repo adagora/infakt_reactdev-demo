@@ -8,6 +8,7 @@ export const ContentPage = styled.div`
   box-sizing: border-box;
   align-items: flex-start;
   align-content: flex-start;
+  justify-content: center;
   position: relative;
   max-width: 185rem;
   border-radius: 0.6rem;
@@ -20,7 +21,7 @@ export const ContentPage = styled.div`
 
   > *:last-child {
     margin-top: auto;
-    flex-basis: 100%;
+    flex-basis: 98.5%;
     width: 100%;
   }
 
@@ -28,4 +29,9 @@ export const ContentPage = styled.div`
     min-width: 26rem;
     padding: 1.4rem 1.4rem 2rem;
   }
+`;
+
+export const ErrorBox = styled.div`
+  display: flex;
+  flex-direction: column;
 `;

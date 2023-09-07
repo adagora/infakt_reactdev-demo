@@ -5,7 +5,8 @@ export const HeaderWrapper = styled.header`
   display: flex;
   align-items: flex-start;
   justify-content: center;
-  padding: 5rem 5rem;
+  padding: 5rem 5rem 3rem 5rem;
+
   nav {
     display: flex;
     flex-flow: row wrap;
@@ -18,5 +19,13 @@ export const HeaderWrapper = styled.header`
     nav {
       justify-content: center;
     }
+  }
+
+  @media ${MEDIA.tablet} {
+    padding: 5rem 5rem 3rem 5rem;
+  }
+
+  @media ${MEDIA.desktop} {
+    padding: 5rem 57rem 3rem 57rem;
   }
 `;

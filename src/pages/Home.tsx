@@ -1,18 +1,31 @@
-import { ContentPage } from "../components/Layout/PageWrapper.styled";
+import { ContentPage, ErrorBox } from "../components/Layout/PageWrapper.styled";
 import { ViewForm } from "../components/ViewWidget/ViewForm";
+import { ResultsResponseType } from "../services/@types/ResultsResponseType";
 import { usePaginatedListAccounts } from "../services/AccountsService";
 import { useNavigate } from "react-router-dom";
 
 const Home: React.FC = (): JSX.Element => {
   const navigate = useNavigate();
-  const moreResults = 4;
+  const moreResults: ResultsResponseType = { results: 4 };
 
-  const { data, isLoading, isError, fetchNextPage, hasNextPage, isFetching } =
-    usePaginatedListAccounts({
-      results: moreResults,
-    });
+  const {
+    data,
+    isLoading,
+    isError,
+    fetchNextPage,
+    hasNextPage,
+    isFetching,
+    refetch,
+  } = usePaginatedListAccounts(moreResults);
 
-  if (isError) return <h1>Something went wrong</h1>;
+  if (isError) {
+    return (
+      <ErrorBox>
+        <h1>Something went wrong</h1>
+        <button onClick={() => refetch()}>Try again</button>
+      </ErrorBox>
+    );
+  }
 
   const handleClickRedirect = () => {
     navigate("/ksiegowi");
@@ -22,7 +35,7 @@ const Home: React.FC = (): JSX.Element => {
     <ContentPage>
       <>
         {isLoading ? (
-          <h1>Loading...</h1>
+          <h1>Loading..</h1>
         ) : (
           data.pages &&
           data.pages.map((page) =>
@@ -35,11 +48,11 @@ const Home: React.FC = (): JSX.Element => {
             ))
           )
         )}
-        {data && data.pages.length === 0 && <h1>No results found</h1>}
+        {data && data.pages.length === 0 && <h1>No accounts found</h1>}
 
         {hasNextPage ? (
           <button onClick={() => fetchNextPage()} disabled={isLoading}>
-            {isFetching ? "Loading" : "Show more"}
+            {isFetching ? "Loading.." : "Show more"}
           </button>
         ) : null}
       </>

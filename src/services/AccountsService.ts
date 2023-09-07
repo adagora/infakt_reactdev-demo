@@ -1,10 +1,9 @@
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { AccountantResponseType } from "../components/ViewWidget/@types/AccountantResponseType";
-import IResponseError from "./@types/IResponseError";
+import { IResponseError } from "./@types/IResponseError";
 import axios, { AxiosRequestConfig } from "axios";
 import { API_BASE_URL, hourInMilliseconds } from "../const";
-
-export type PageResponseType = Pick<AccountantResponseType["info"], "results">;
+import { ResultsResponseType } from "./@types/ResultsResponseType";
 
 /*
  * example link:  https://randomuser.me/api/?seed=abc&gender=female&page=1&results=5
@@ -17,7 +16,7 @@ const fetchUsers = async (options?: AxiosRequestConfig) => {
   return response.data;
 };
 
-export function usePaginatedListAccounts({ results }: PageResponseType) {
+export function usePaginatedListAccounts({ results }: ResultsResponseType) {
   return useInfiniteQuery<any, IResponseError, AccountantResponseType>(
     ["accounts"],
     () => fetchUsers({ params: { results } }),
