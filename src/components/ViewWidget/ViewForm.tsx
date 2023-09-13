@@ -33,14 +33,10 @@ export const ViewForm: React.FC<AccountantType & { onClick: () => void }> = ({
       </CardHeader>
 
       <h3>Email</h3>
-      {email ? (
-        <a href={`mailto:${email}`}>{email}</a>
-      ) : (
-        <span>Not provided.</span>
-      )}
+      {<a href={`mailto:${email}`}>{email}</a>}
 
       <h3>Telefon</h3>
-      {cell ? <span>{cell}</span> : <span>Not provided.</span>}
+      {<span>{cell}</span>}
 
       <h3>Średnia cena netto usługi / m-c</h3>
       <span>350,00 PLN</span>
